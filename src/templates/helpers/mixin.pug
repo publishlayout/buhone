@@ -1,0 +1,243 @@
+- var id = 0;
+mixin listLink(data)
+  - var tagName = data.tagName? data.tagName: 'ul';
+  - var tagItem = data.tagItem? data.tagItem: 'li';
+  #{tagName}&attributes(attributes)
+    each itm in data.items
+      #{tagItem}(class=itm.cl)
+        a(target=itm.target, href=(itm.url) ? itm.url:'#')
+          if (itm.ttl)
+            !=itm.ttl
+          if (itm.icn)
+            +svg(itm.icn)
+mixin list(data)
+  - var tagName = data.tagName? data.tagName: 'ul';
+  - var tagItem = data.tagItem? data.tagItem: 'li';
+  #{tagName}&attributes(attributes)
+    each itm in data.items
+      #{tagItem}(class=itm.cl)
+          if (itm.ttl)
+            !=itm.ttl
+          if (itm.icn)
+            +svg(itm.icn)
+mixin svg(icon, folder)
+  svg( class="icon icon_"+icon)&attributes(attributes)
+    use(xlink:href="images/"+(folder? folder: 'sprite-svg')+".svg#"+icon)
+mixin phone(data)
+  - var href = data.phone.replace(/[^0-9\+]/g, '')
+  a&attributes(attributes)(href="tel:"+href)
+    if data.icon
+      +svg(data.icon)(class=data.classIcon)
+    !=data.phone
+mixin gridLayout()
+  .grid-layout
+    .row.d-flex
+      .col.d-flex
+        .in.w-100
+      .col.d-flex
+        .in.w-100
+      .col.d-flex
+        .in.w-100
+      .col.d-flex
+        .in.w-100
+      .col.d-flex
+        .in.w-100
+      .col.d-flex
+        .in.w-100
+      .col.d-flex
+        .in.w-100
+      .col.d-flex
+        .in.w-100
+      .col.d-flex
+        .in.w-100
+      .col.d-flex
+        .in.w-100
+      .col.d-flex
+        .in.w-100
+      .col.d-flex
+        .in.w-100
+mixin webp(data)
+  - var lazy = !data.lazyUnpug ? 'lazy': '';
+  picture
+    if data.lazyUnpug
+      if data.sources
+        each source in data.sources
+          - var img = source.img
+          - var src = img.replace(/\.jp[e]?g|.png/g, '')
+          - var type = img.replace(src+'.', '')
+          source(media=source.media srcset=src + '.webp',  type="image/webp")
+          source(media=source.media srcset=img, type="image/" + type)
+      else
+        - var src = data.img.replace(/\.jp[e]?g|.png/g, '')
+        source(srcset=src + '.webp'  type="image/webp")
+      img(data-lazy=data.img,  alt="")&attributes(attributes)
+    else
+      if data.sources
+        each source in data.sources
+          - var img = source.img
+          - var src = img.replace(/\.jp[e]?g|.png/g, '')
+          - var type = img.replace(src+'.', '')
+          source(media=source.media data-srcset=src + '.webp',  type="image/webp")
+          source(media=source.media data-srcset=img, type="image/" + type)
+      else
+        - var src = data.img.replace(/\.jp[e]?g|.png/g, '')
+        source(data-srcset=src + '.webp'  type="image/webp")
+      img(data-src=data.img, class=lazy alt="")&attributes(attributes)
+mixin field(data)
+  -id++
+  case data.type
+    when 'select'
+      .form-group&attributes(attributes)
+        if data.lbl
+          label(
+            for='input-' + id,
+            class=data.classLabel
+          ).inp-lbl!=data.lbl
+        select(
+          class=data.classInput,
+          name=data.name,
+          data-search=data.search,
+          placeholder=data.placeholder,
+          style="width: 100%",
+          disabled=data.disabled
+        ).form-select
+          if data.placeholder
+            option
+          each itm in data.options
+            option(value=itm.value)!=itm.ttl
+        if data.error
+          .error-message
+            != data.error
+    when 'file'
+      .form-group.d-flex&attributes(attributes)
+        .form-file
+          input(type="file" name="" placeholder="")
+          +btn(data.btn)
+          span.text.bold!=data.text
+          .txt
+          span.remove
+            +svg('close')
+    when 'checkbox'
+      input(
+        type="checkbox",
+        value=data.value,
+        class=data.classInput,
+        name=data.name,
+        checked=data.checked,
+        id='checkbox-'+id
+      ).inp-checkbox
+      label(for='checkbox-'+id).form-checkbox
+        .icon-wrap
+        if data.icon
+          +svg(data.icon.icon, data.icon.folder)
+        !=data.lbl
+        if data.pict
+          +webp(data.pict)
+        if data.icon
+          +svg(data.icon, data.iconPath)(class=data.classIcon)
+    when 'radio'
+      input(
+        type="radio",
+        value=data.value,
+        class=data.classInput,
+        name=data.name,
+        checked=data.checked,
+        id='radio-'+id
+      ).inp-radio
+      label(for='radio-'+id).form-radio
+        .icon-wrap
+        !=data.lbl
+    when 'textarea'
+      .form-group&attributes(attributes)
+        if data.lbl
+          label(
+            for='input-' + id,
+            class=data.classLabel
+          ).inp-lbl!=data.lbl
+        textarea(
+          class=data.classInput,
+          name=data.name,
+          placeholder=data.placeholder,
+          id='input-' + id,
+          rows="5",
+          cols="10",
+        ).form-control
+        if data.error
+          .error-message
+            != data.error
+
+    default
+      .form-group&attributes(attributes)
+        if data.lbl
+          label(
+            for='input-' + id,
+            class=data.classLabel
+          ).inp-lbl!=data.lbl
+        input(
+          type=data.type ? data.type: 'text',
+          name=data.name,
+          data-mask=data.mask? data.mask: false,
+          placeholder=data.placeholder,
+          value=data.value,
+          class=data.classInput,
+          id='input-'+id
+        ).form-control
+        if data.error
+          .error-message
+            != data.error
+mixin btn(data)
+  -var tag = data.tag? data.tag: 'a';
+  #{tag}(
+    href=data.href?data.href: tag=='a'? '#':false,
+    data-fancybox= data.fancybox? data.fancybox: false,
+    data-src= data.src? data.fancybox: false,
+    class=data.class
+  )&attributes(attributes).btn
+    if data.icon && !data.icon.right
+      .icon-wrap(class=data.icon.class)
+        +svg(data.icon.icon, data.icon.folder)
+    !=data.ttl
+    if data.txt
+      .txt(class=data.classTxt)!=data.txt
+    if data.icon && data.icon.right
+      .icon-wrap(class=data.icon.class)
+        +svg(data.icon.icon, data.icon.folder)
+mixin pagination()
+  .pagination
+    ul
+      li.prev
+        span
+          +svg('arrow-left')
+      li
+        a(href="#") 1
+      li
+        a(href="#") 2
+      li.is-active
+        span 3
+
+      li
+        a(href="#") ...
+      li
+        a(href="#") 6
+      li
+        a(href="#") 8
+      li.prev
+        a(href="#")
+          +svg('arrow-right')
+mixin breadcrumbs(data)
+  .breadcrumbs&attributes(attributes)
+    .container
+      ul(itemprop='http://schema.org/breadcrumb' itemscope='' itemtype='http://schema.org/BreadcrumbList')
+        each itm,i  in data.items
+          if i+1 < data.items.length
+            li(itemprop='itemListElement' itemscope='' itemtype='http://schema.org/ListItem')
+              meta(itemprop='position' content='1')
+              if i != 0
+                +svg('arrow-right')
+              a(href=itm.url title='Главная' itemprop='item')
+                span(itemprop='name')!=itm.ttl
+          else
+            li(itemprop='itemListElement' itemscope='' itemtype='http://schema.org/ListItem')
+              meta(itemprop='position' content='2')
+              +svg('arrow-right')
+              span(itemprop='name')!=itm.ttl

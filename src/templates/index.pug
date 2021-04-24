@@ -1,0 +1,51 @@
+extends extends/base.pug
+append vars
+  - var pageUrl = 'index.html';
+  - var pageTitle = 'Главная страница';
+  - var classBody = '';
+  - var gridShow = true;
+block styles
+  link(href="css/index.css", rel="stylesheet" )
+block content
+  main
+    section
+      div(class="cont")
+        div(class="slider")
+        div(class="nav-cover")
+          ul(class="nav")
+          div(class="nav-buttons")
+            div(data-target='left' class="side-nav side-nav--left")
+            div(data-target='right' class="side-nav side-nav--right")
+    section(class="section-contact-us")
+      div(class="contact-us")
+        div(class="contacts")
+          h2 Связь с нами
+          p У вас остались вопросы? Напишите нам - мы ответим в ближайшее время!
+          ul
+            li
+              a(class="phone" href="tel:+71112223344") +7 (111) 222-33-44
+            li
+              a(class="mail" href="mailto:order@bu-one.ru") order@bu-one.ru
+        div(class="contacts-form")
+          form
+            +field({
+              lbl: 'Имя',
+              placeholder: 'Иван',
+            })
+            +field({
+              lbl: 'Фамилия',
+              placeholder: 'Иванов',
+            })
+            +field({
+              lbl: 'Сообщение',
+              type: 'textarea',
+              placeholder: 'Ваше сообщение',
+            })
+            div(class="form-group")
+              +btn({
+                tag: 'button',
+                ttl: 'Отправить сообщение',
+              })
+block scripts
+  script(type="text/javascript" src="/js/plugins/jquery-3.6.0.js")
+  script(type="text/javascript" src="/js/plugins/slider.js")

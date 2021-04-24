@@ -1,0 +1,19 @@
+.btn {
+  border: 2px solid $blue;
+  background: $blue;
+  font-size: 14px;
+  padding: 8px 23px;
+  color: #FFF;
+  text-align: center;
+  display: inline-block;
+  vertical-align: top;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  &:hover {
+
+  }
+  &:disabled,&[disabled], &:disabled:hover, &:disabled:focus {
+
+  }
+}

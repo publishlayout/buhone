@@ -1,0 +1,88 @@
+html {
+  height: 100%;
+}
+
+body {
+  font-family: $baseFF;
+  color: $baseFClr;
+  font-size: $baseFS;
+  line-height: $baseLH;
+  font-weight: $baseFW;
+  font-style: $baseFSt;
+  min-height: 100%;
+  position: relative;
+  background: $baseBg;
+}
+
+button,
+input[type='submit'] {
+  @include transition();
+}
+
+p {
+  margin: 0 0 20px;
+}
+
+img {
+  max-width: 100%;
+}
+
+.slick-slider *,
+input, button,
+a:focus, a:hover {
+  outline: none !important;
+}
+*:after,
+*:before,
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.clearfix {
+  &:after {
+    content: '';
+    display: table;
+    width: 100%;
+    clear: both;
+  }
+}
+.grid-layout {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  height: 100%;
+  z-index: -1;
+  .row {
+    min-height: 100vh;
+    .in {
+      background: rgba(#FFE4E4, 0.5);
+    }
+  }
+}
+.tabs-wrap {
+  position: relative;
+  overflow: hidden;
+  .tab {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0;
+    visibility: hidden;
+    @include transition();
+    &.is-visible {
+      opacity: 1;
+      visibility: visible;
+      position: static;
+    }
+  }
+}
+.container {
+  padding: 0 15px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+

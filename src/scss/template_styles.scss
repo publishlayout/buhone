@@ -1,0 +1,40 @@
+//include normalize
+@import "libs/normalize";
+//include fonts
+@import "partials/fonts";
+//include sprite-svg
+@import "partials/sprite-svg";
+//include variables
+@import "helpers/variables";
+// include functions
+@import "helpers/functions";
+// include mixin
+@import "helpers/mixin";
+// include select
+@import "../../bower_components/select2/dist/css/select2.css";
+// include fancybox
+@import "../../bower_components/fancybox/dist/jquery.fancybox.min.css";
+/* Ссылки
+-----------------------------*/
+@import "partials/link";
+/* Сетка
+-----------------------------*/
+@import "partials/grid";
+/* Кнопки на сайте
+-----------------------------*/
+@import "partials/buttons";
+/* Элементы форм
+-----------------------------*/
+@import "partials/forms";
+/* Базовые стили всего сайта
+-----------------------------*/
+@import "partials/base";
+/* Шапка сайта
+-----------------------------*/
+@import "../components/header/style";
+/* Подвал сайта
+-----------------------------*/
+@import "../components/footer/style";
+/* Модификаторы
+-----------------------------*/
+@import "partials/modifiers.scss";
