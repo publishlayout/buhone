@@ -218,20 +218,44 @@ $(document).ready(function() {
     });*/
 });
 
+function validateInput(form, inputClass, className = 'error') {
+	let validate = () => {
+		if(form.getElementsByClassName(inputClass)[0].value.length==0) {
+			form.getElementsByClassName(inputClass)[0].parentElement.classList.add(className);
+			return false;
+		} else {
+			form.getElementsByClassName(inputClass)[0].parentElement.classList.remove(className);
+			return true;
+		}
+	}
+	form.getElementsByClassName(inputClass)[0].addEventListener('input', (e) => {
+		validate();
+	});
+	
+	return validate();
+}
+
 const form = document.getElementsByClassName('contacts-form');
 if(form.length > 0) {
 	const formEl = form[0].getElementsByTagName('form')[0];
 	formEl.addEventListener('submit', (e) => {
 		e.preventDefault();
 		e.stopImmediatePropagation();
-		document.getElementsByClassName('popups')[0].style.display = 'block';
 		
-		var supportPageOffset = window.pageXOffset !== undefined;
-		var isCSS1Compat = ((document.compatMode || "") === "CSS1Compat");
-		var y = supportPageOffset ? window.pageYOffset : isCSS1Compat ? document.documentElement.scrollTop : document.body.scrollTop;
+		let supportPageOffset = window.pageXOffset !== undefined;
+		let isCSS1Compat = ((document.compatMode || "") === "CSS1Compat");
+		let y = supportPageOffset ? window.pageYOffset : isCSS1Compat ? document.documentElement.scrollTop : document.body.scrollTop;
 		
-		document.getElementsByClassName('popups')[0].style.top = y+'px';
-		document.getElementsByClassName('popup')[0].style.transform = 'translateY(-'+document.getElementsByClassName('popup')[0].offsetHeight/2+'px)';
+		let res_1 = validateInput(formEl, 'input-name');
+		let res_2 = validateInput(formEl, 'input-surname');
+		let res_3 = validateInput(formEl, 'textarea-message', 'error-2');
+		
+		if(res_1 && res_2 && res_3) {
+			document.getElementsByClassName('popups')[0].style.display = 'block';
+			document.getElementsByClassName('popups')[0].style.top = y+'px';
+			document.getElementsByClassName('popup')[0].style.transform = 'translateY(-'+document.getElementsByClassName('popup')[0].offsetHeight/2+'px)';
+		}
+		
 	});
 }
 const closeButton = document.getElementsByClassName('close-button');
