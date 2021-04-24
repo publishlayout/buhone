@@ -97,9 +97,9 @@ header {
 						color: inherit;
 						text-decoration: none;
 						&.phone:before {
-							width: 17px;
-							height: 17px;
-							background: url("/images/sprite.png") -40px 0 no-repeat;
+							width: 21px;
+							height: 21px;
+							background: url("/images/sprite.png") 0 -18px no-repeat;
 						}
 						&.mail:before {
 							width: 23px;
@@ -485,9 +485,9 @@ url('/images/slide-4.jpg') center center no-repeat
 							box-sizing: content-box;
 						}
 						&.phone:before {
-							width: 39px;
-							height: 30px;
-							background: url("/images/sprite.png") -76px 0 no-repeat;
+							width: 36px;
+							height: 36px;
+							background: url("/images/sprite.png") -39px -21px no-repeat;
 						}
 						&.mail:before {
 							width: 41px;
@@ -518,9 +518,9 @@ url('/images/slide-4.jpg') center center no-repeat
 					}
 					&.error:after, &.error-2:after {
 						content: "";
-						width: 20px;
-						height: 20px;
-						background: url("/images/sprite.png") -116px 0 no-repeat;
+						width: 27px;
+						height: 23px;
+						background: url("/images/sprite.png") -117px 0 no-repeat;
 						display: block;
 						position: absolute;
 						bottom: 45px;
@@ -528,6 +528,9 @@ url('/images/slide-4.jpg') center center no-repeat
 					}
 					&.error-2:after {
 						bottom: 65px;
+					}
+					&:nth-child(1):after {
+						right: 38px;
 					}
 					
 					label {
