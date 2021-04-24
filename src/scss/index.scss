@@ -502,6 +502,7 @@ url('/images/slide-4.jpg') center center no-repeat
 						width: 100%;
 						margin-bottom: 35px;
 						font-size: 21px;
+						font-weight: 300;
 						font-family: inherit;
 						background: none;
 						color: inherit;
@@ -511,6 +512,9 @@ url('/images/slide-4.jpg') center center no-repeat
 						border-right: none;
 						border-bottom: 1px solid #FFFFFF;
 						outline: none;
+						::placeholder {
+							font-weight: 300;
+						}
 					}
 					textarea {
 						width: 100%;
@@ -524,6 +528,7 @@ url('/images/slide-4.jpg') center center no-repeat
 						line-height: 28px;
 						font-size: 21px;
 						font-family: inherit;
+						font-weight: 300;
 						background: none;
 						color: inherit;
 						resize: none;
