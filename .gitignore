@@ -1,7 +1,6 @@
 symbol/
 node_modules/
 bower_components/
-build/
 .idea/
 .gulp/
 package-lock.json
