@@ -3,7 +3,7 @@ append vars
   - var pageUrl = 'index.html';
   - var pageTitle = 'Главная страница';
   - var classBody = '';
-  - var gridShow = true;
+  - var gridShow = false;
 block styles
   link(href="css/index.css", rel="stylesheet" )
 block content
@@ -43,9 +43,18 @@ block content
             })
             div(class="form-group")
               +btn({
+                class: 'form-button',
                 tag: 'button',
                 ttl: 'Отправить сообщение',
               })
+block popups
+  div(class="popups")
+    div(class="popup")
+      h3 Ваше сообщение успешно отправлено
+      +btn({
+        class: 'close-button',
+        ttl: 'Закрыть'
+      })
 block scripts
   script(type="text/javascript" src="js/plugins/jquery-3.6.0.js")
   script(type="text/javascript" src="js/plugins/slider.js")

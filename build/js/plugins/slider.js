@@ -217,3 +217,27 @@ $(document).ready(function() {
 	 	if (delta < 0 || e.originalEvent.detail > 0) navigateRight();
     });*/
 });
+
+const form = document.getElementsByClassName('contacts-form');
+if(form.length > 0) {
+	const formEl = form[0].getElementsByTagName('form')[0];
+	formEl.addEventListener('submit', (e) => {
+		e.preventDefault();
+		e.stopImmediatePropagation();
+		document.getElementsByClassName('popups')[0].style.display = 'block';
+		
+		var supportPageOffset = window.pageXOffset !== undefined;
+		var isCSS1Compat = ((document.compatMode || "") === "CSS1Compat");
+		var y = supportPageOffset ? window.pageYOffset : isCSS1Compat ? document.documentElement.scrollTop : document.body.scrollTop;
+		
+		document.getElementsByClassName('popups')[0].style.top = y+'px';
+		document.getElementsByClassName('popup')[0].style.transform = 'translateY(-'+document.getElementsByClassName('popup')[0].offsetHeight/2+'px)';
+	});
+}
+const closeButton = document.getElementsByClassName('close-button');
+if(closeButton.length > 0) {
+	closeButton[0].addEventListener('click', (e) => {
+		e.preventDefault();
+		closeButton[0].parentElement.parentElement.style.display = 'none';
+	});
+}
